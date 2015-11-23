@@ -4,9 +4,9 @@ Docker NFS Server
 Usage
 ----
 ```bash
-docker run -d --name nfs cpuguy83/nfs-server /path/to/share /path/to/share2 /path/to/shareN
+docker run -d --name nfs-server --privileged -v /home/docker/share:/home/share nfs-server
 ```
 
 ```bash
-docker run -d --name nfs-client --link nfs:nfs cpuguy83/nfs-client /path/on/nfs/server:/path/on/client
+docker run -d --name nfs-client --privileged -e NFS_PORT_2049_TCP_ADDR=172.17.0.2 nfs-client
 ``` 
